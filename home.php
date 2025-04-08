@@ -134,7 +134,7 @@
                 <img src="image/download.png">
                 <h1>Trending Products</h1>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <img src="image/aboutt.jpg">
                 <div class="row-detail">
                 <img src="image/basil.jpg">
@@ -142,30 +142,30 @@
                     <h1>.....text.....</h1>
                 </div>
                 </div>
-            </div>
+            </div> -->
             <div class="box-container">
                 <div class="box">
-                    <img src="image/card.jpg">
+                    <img src="image/card1.png">
                     <a href="view_products.php" class="btn">shop now</a>
                 </div>
                 <div class="box">
-                    <img src="image/card0.jpg">
+                    <img src="image/card2.png">
                     <a href="view_products.php" class="btn">shop now</a>
                 </div>
                 <div class="box">
-                    <img src="image/card.jpg">
+                    <img src="image/card3.png">
                     <a href="view_products.php" class="btn">shop now</a>
                 </div>
                 <div class="box">
-                    <img src="image/card.jpg">
+                    <img src="image/card4.png">
                     <a href="view_products.php" class="btn">shop now</a>
                 </div>
                 <div class="box">
-                    <img src="image/card.jpg">
+                    <img src="image/card5.jpg">
                     <a href="view_products.php" class="btn">shop now</a>
                 </div>
                 <div class="box">
-                    <img src="image/card.jpg">
+                    <img src="image/card6.png">
                     <a href="view_products.php" class="btn">shop now</a>
                 </div>
             </div>
