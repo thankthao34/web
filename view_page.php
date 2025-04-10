@@ -74,48 +74,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <title>Retro Shop - shop page</title>
+    <title>Retro Shop - Product detail page</title>
 </head>
 <body>
     <?php include 'components/header.php'; ?>
     <div class="main">
         <div class="banner">
-            <h1>Shop now</h1>
+            <h1>Product detail</h1>
         </div>
         <div class="title2">
-            <a href="home.php">home</a><span>/ our shop</span>
+            <a href="home.php">home</a><span>/ Product detail</span>
         </div>
-        <section class="products">
-            <div class="box-container">
-                <?php
-                    $select_products = $conn->prepare("SELECT * FROM products ");
+        <section class="view_page">
+            <?php
+                if (isset($_GET['pid'])) {
+                    $pid = $_GET['pid'];
+                    $select_products = $conn->prepare("SELECT * FROM products WHERE id = '$pid'");
                     $select_products->execute();
                     if ($select_products->rowCount() > 0) {
                         while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
+                
+                
                 ?>
-                <form action="" method="post" class="box">
-                    <img src="img/<?=$fetch_products['image']; ?>" class="img">
-                    <div class="button">
-                        <button type="submit" name="add_to_cart"><i class="bx bx-cart"></i></button>
-                        <button type="submit" name="add_to_wishlist"><i class="bx bx-heart"></i></button>
-                        <a href="view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="bx bxs-show"></a>
+                <form method="post">
+                    <img src="img/<?php echo $fetch_products['image']; ?>">
+                    <div class="detail">
+                        <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
+                        <div class="name"><?php echo $fetch_products['name']; ?></div>
+                        <div class="detail">
+                        <p>Đồ cổ Việt Nam thập niên tám mươi, phong cách hoài niệm thời xưa, 
+                            mang đậm nét văn hóa đĩa nhựa và băng cassette. 
+                            Hãy cùng khám phá vẻ đẹp cổ điển với máy nghe nhạc walkman,
+                             ánh sáng đèn neon rực rỡ, hay những bức ảnh polaroid đầy ký ức. 
+                             Sản phẩm đậm chất disco thời thượng, kết hợp với máy chơi game arcade huyền thoại, 
+                             tất cả đều gợi nhớ đến thời kỳ vàng son. Bộ sưu tập này như một chiếc máy quay đĩa turntable, 
+                             lưu giữ tinh hoa của một thời đã qua.</p>
+                        </div>
+                        <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+                        <div class="button">
+                            <button type="submit" name="add_to_wishlist" class="btn"> add to wishlist <i class="bx 
+                            bx-heart"></i></button>
+                            <input type="hidden" name="qty" value="1" min="0" class="quantity">
+                            <button type="submit" name="add_to_cart" class="btn"> add to cart <i class="bx bx-cart">
+                            </i></button>
+                        </div>
                     </div>
-
-                    <h3 class="name"><?=$fetch_products['name']; ?></h3>
-                    <input type="hidden" name="product_id" value="<?=$fetch_products['id']; ?>">
-                    <div class="flex">
-                        <p class="price">price $<?=$fetch_products['price']; ?>/-</p>
-                        <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-                    </div>
-                    <a href="checkout.php?get_id=<?=$fetch_products['id']; ?>" class="btn">buy now</a>
                 </form>
+
                 <?php
                         }
-                    }else{
-                        echo '<p class="empty">no products added yet!</p>';
                     }
-                ?>
-            </div>
+                }
+            ?>
         </section>
         <?php include 'components/footer.php'; ?>
     </div>
